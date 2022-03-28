@@ -4,77 +4,101 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// class to test random character generated
 public class TestRandomCharacter {
+    // variables
     static final int NUMOFCHARS = 15;
     static final int RANDLOWCHAR = 1;
     static final int RANDUPPCHAR = 2;
     static final int RANDDIGIT = 3;
     static final int RANDCHAR = 4;
-    String strLowerCase;
-    String strUpperCase;
-    String strDigit;
-    String strRandChar;
-    char c;
-    int x;
-    boolean isPrime;
+    public String strLowerCase;
+    public String strUpperCase;
+    public String strDigit;
+    public String strRandChar;
+    public char c;
+    public int x;
+    public boolean isPrime;
 
+    // method to execute first before the other methods
     @BeforeEach
     void setUp(){
+        // generate 4 strings containing 15 characters with different methods
         strLowerCase = RandomCharacter.generateStringFromRandChar(NUMOFCHARS, RANDLOWCHAR);
         strUpperCase = RandomCharacter.generateStringFromRandChar(NUMOFCHARS, RANDUPPCHAR);
         strDigit = RandomCharacter.generateStringFromRandChar(NUMOFCHARS, RANDDIGIT);
         strRandChar = RandomCharacter.generateStringFromRandChar(NUMOFCHARS, RANDCHAR);
     }
 
-//    @RepeatedTest(10)
-//    public void testStrLen(){
-//        assertNotNull(strLowerCase);
-//        assertNotNull(strUpperCase);
-//        assertNotNull(strDigit);
-//        assertNotNull(strRandChar);
-//        assertEquals(15, strLowerCase.length());
-//        assertEquals(15, strUpperCase.length());
-//        assertEquals(15, strDigit.length());
-//        assertEquals(15, strRandChar.length());
-//    }
-//
-//    @RepeatedTest(10)
-//    public void testLowerCase() {
-//        for (x = 0; x < strLowerCase.length() - 1; x++){
-//            c = strLowerCase.charAt(x);
-//            assertTrue(Character.isLowerCase(c));
-//            assertFalse(Character.isUpperCase(c));
-//        }
-//        assertNotEquals(strLowerCase,strLowerCase.toUpperCase());
-//        }
-//
-//    @RepeatedTest(10)
-//    public void testUpperCase(){
-//        for (x = 0; x < strUpperCase.length() - 1; x++){
-//            c = strUpperCase.charAt(x);
-//            assertTrue(Character.isUpperCase(c));
-//            assertFalse(Character.isLowerCase(c));
-//        }
-//        assertNotEquals(strUpperCase,strUpperCase.toLowerCase());
-//    }
-//
-//    @RepeatedTest(10)
-//    public void testDigit() {
-//        for (x = 0; x < strDigit.length() - 1; x++) {
-//            c = strDigit.charAt(x);
-//            assertTrue(Character.isDigit(c));
-//            assertFalse(Character.isLetter(c));
-//        }
-//    }
-//
-//    @RepeatedTest(10)
-//    public void testRandChar(){
-//        for (x = 0; x < strDigit.length() - 1; x++) {
-//            c = strDigit.charAt(x);
-//            assertTrue(c < 128);
-//            assertFalse(c >= 128);
-//        }
-//    }
+    // test method will be executed 10 times
+    @RepeatedTest(10)
+    public void testStrLen(){
+        // check that the strings generated are not empty
+        assertNotNull(strLowerCase);
+        assertNotNull(strUpperCase);
+        assertNotNull(strDigit);
+        assertNotNull(strRandChar);
+        // check that the string generated has the same number of characters required
+        assertEquals(NUMOFCHARS, strLowerCase.length());
+        assertEquals(NUMOFCHARS, strUpperCase.length());
+        assertEquals(NUMOFCHARS, strDigit.length());
+        assertEquals(NUMOFCHARS, strRandChar.length());
+    }
+
+    // test method will be executed 10 times
+    @RepeatedTest(10)
+    public void testLowerCase() {
+        // iterate through every character in the string
+        for (x = 0; x < strLowerCase.length() - 1; x++){
+            c = strLowerCase.charAt(x);
+            // ensure that the characters are all lowercase
+            assertTrue(Character.isLowerCase(c));
+            assertFalse(Character.isUpperCase(c));
+        }
+        // ensure that the string with all lowercase characters are not equivalent
+        // to the string with all uppercase characters
+        assertNotEquals(strLowerCase,strLowerCase.toUpperCase());
+        }
+
+    // test method will be executed 10 times
+    @RepeatedTest(10)
+    public void testUpperCase(){
+        // iterate through every character in the string
+        for (x = 0; x < strUpperCase.length() - 1; x++){
+            c = strUpperCase.charAt(x);
+            // ensure that the characters are all uppercase
+            assertTrue(Character.isUpperCase(c));
+            assertFalse(Character.isLowerCase(c));
+        }
+        // ensure that the string with all uppercase characters are not equivalent
+        // to the string with all lowercase characters
+        assertNotEquals(strUpperCase,strUpperCase.toLowerCase());
+    }
+
+    // test method will be executed 10 times
+    @RepeatedTest(10)
+    public void testDigit() {
+        // iterate through every character in the string
+        for (x = 0; x < strDigit.length() - 1; x++) {
+            c = strDigit.charAt(x);
+            // ensure that the string contains digit character
+            // instead of letter character
+            assertTrue(Character.isDigit(c));
+            assertFalse(Character.isLetter(c));
+        }
+    }
+
+    // test method will be executed 10 times
+    @RepeatedTest(10)
+    public void testRandChar(){
+        // iterate through every character in the string
+        for (x = 0; x < strDigit.length() - 1; x++) {
+            c = strDigit.charAt(x);
+            // ensure that the string contains characters up till ASCII 127
+            assertTrue(c < 128);
+            assertFalse(c >= 128);
+        }
+    }
 
     @Test
     public void testPrime() {
@@ -102,5 +126,3 @@ public class TestRandomCharacter {
         }
     }
 }
-
-
