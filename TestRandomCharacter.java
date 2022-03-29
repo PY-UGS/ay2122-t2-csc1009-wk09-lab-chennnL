@@ -104,17 +104,20 @@ public class TestRandomCharacter {
     public void testPrime() {
         for (x = 0; x < strDigit.length() - 1; x++) {
             c = strDigit.charAt(x);
-            if (c <= 1) {
+            // convert the ASCII integer with ASCII number back to numerical integer
+            int num = Character.getNumericValue(c);
+            // any number less than or equal to 1 will not be prime
+            if (num <= 1) {
                 isPrime = false;
-                System.out.println(c + "is not prime");
+                System.out.println(num + " is not prime");
             } else {
                 isPrime = true;
                 // every prime is only divisible by 1 and itself
                 // if the number is divisible by any other number
                 // it will not be prime
-                for (int i = 2; i <= c / 2; i++) {
-                    if ((c % i) == 0) {
-                        System.out.println(c + " is divisible by " + i);
+                for (int i = 2; i <= num / 2; ++i) {
+                    if ((num % i) == 0) {
+                        System.out.println(num + " is divisible by " + i);
                         isPrime = false;
                         break;
                     }
